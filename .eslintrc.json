@@ -11,10 +11,7 @@
 	],
 	"overrides": [
 		{
-			"files": [
-				"*.spec.ts$",
-				"*.e2e.ts$"
-			],
+			"files": ["*.spec.ts$", "*.e2e.ts$"],
 			"env": {
 				"jest": true
 			}
@@ -25,10 +22,7 @@
 		"ecmaVersion": 2020,
 		"sourceType": "module"
 	},
-	"plugins": [
-		"@typescript-eslint/eslint-plugin",
-		"prettier"
-	],
+	"plugins": ["@typescript-eslint/eslint-plugin", "prettier"],
 	"root": true,
 	"rules": {
 		"prettier/prettier": "error"
