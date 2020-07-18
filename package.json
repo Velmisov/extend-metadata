@@ -11,9 +11,14 @@
   "author": "Vladislav Velmisov",
   "keywords": [],
   "scripts": {
+    "prebuild": "rm -rf ./dist",
+    "build": "tsc --skipLibCheck -p tsconfig.build.json",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "peerDependencies": {
     "reflect-metadata": "^0.1.13"
+  },
+  "devDependencies": {
+    "typescript": "^3.9.7"
   }
 }
