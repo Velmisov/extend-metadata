@@ -1,0 +1,19 @@
+{
+  "name": "extend-metadata",
+  "version": "1.0.0",
+  "description": "Extend class with its metadata",
+  "homepage": "https://github.com/Velmisov/extend-metadata#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Velmisov/extend-metadata.git"
+  },
+  "license": "MIT",
+  "author": "Vladislav Velmisov",
+  "keywords": [],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "peerDependencies": {
+    "reflect-metadata": "^0.1.13"
+  }
+}
