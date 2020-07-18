@@ -1,0 +1,7 @@
+{
+	"collectCoverageFrom": ["**/*.ts"],
+	"coverageDirectory": "./coverage",
+	"preset": "ts-jest",
+	"testEnvironment": "node",
+	"testRegex": ".spec.ts$"
+}
