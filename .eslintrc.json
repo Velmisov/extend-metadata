@@ -11,7 +11,7 @@
 	],
 	"overrides": [
 		{
-			"files": ["*.spec.ts$", "*.e2e.ts$"],
+			"files": ["*.test.ts$"],
 			"env": {
 				"jest": true
 			}
@@ -25,6 +25,7 @@
 	"plugins": ["@typescript-eslint/eslint-plugin", "prettier"],
 	"root": true,
 	"rules": {
-		"prettier/prettier": "error"
+		"prettier/prettier": "error",
+		"@typescript-eslint/ban-types": "off"
 	}
 }
