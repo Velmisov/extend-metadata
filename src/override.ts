@@ -6,10 +6,7 @@ export function Override(): PropertyDecorator {
 		const instance = target;
 		const instanceProto: Object = Object.getPrototypeOf(instance);
 
-		const metadataKeys =
-			propertyKey === 'constructor'
-				? Reflect.getOwnMetadataKeys(instance.constructor)
-				: Reflect.getOwnMetadataKeys(instance, propertyKey);
+		const metadataKeys = Reflect.getOwnMetadataKeys(instance, propertyKey);
 
 		extendRecursively(instance, metadataKeys, propertyKey, instanceProto);
 	};
