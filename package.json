@@ -9,7 +9,16 @@
 	},
 	"license": "MIT",
 	"author": "Vladislav Velmisov",
-	"keywords": [],
+	"keywords": [
+		"extend",
+		"override",
+		"reflect",
+		"metadata",
+		"decorator"
+	],
+	"publishConfig": {
+		"access": "public"
+	},
 	"scripts": {
 		"prebuild": "rm -rf ./dist",
 		"build": "tsc --skipLibCheck -p tsconfig.build.json",
