@@ -16,4 +16,71 @@
 
 ## Description
 
-Extend class with its metadata
+Extend/override metadata of parent classes.
+
+## Installation
+
+```bash
+npm install extend-metadata
+```
+
+## API
+
+`@Extend()` - class decorator. Use it to extend all parent classes metadata.
+
+`@Override()` - property/method decorator. Use it to extend particular metadata.
+
+## Usage
+
+### Extend
+
+```typescript
+@AddClassMetadata()
+class Animal {
+    @AddPropertyMetadata()
+    property: Type;
+
+    @AddMethodMetadata()
+    method(): Type {}
+}
+
+@Extend()
+class Cat extends Animal { // has the same metadata
+    property: Type; // also has the same metadata
+
+    @AddAnotherMethodMetadata()
+    method(): Type { // has another metadata
+        return super.method();
+    }
+}
+```
+
+### Override
+
+```typescript
+@AddClassMetadata()
+class Animal {
+    @AddPropertyMetadata()
+    property: Type;
+
+    @AddMethodMetadata()
+    method(): Type {}
+}
+
+class Cat extends Animal { // doesn't have metadata from Animal
+    @Override()
+    property: Type; // has the same metadata
+
+    method(): Type { // no metadata
+        return super.method();
+    }
+}
+```
+
+## Requirements
+
+`reflect-metadata: ^0.1.13`
+
+## License
+
+extend-metadata is [MIT licensed](LICENSE).
