@@ -1,3 +1,4 @@
+import 'reflect-metadata';
 import { AddClassMetadata, AddPropertyMetadata } from './fixtures/add-metadata';
 import { Override } from '../src';
 

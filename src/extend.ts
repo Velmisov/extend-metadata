@@ -1,4 +1,3 @@
-import 'reflect-metadata';
 import { extendRecursively } from './utils';
 
 export function Extend(): ClassDecorator {
