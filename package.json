@@ -19,8 +19,6 @@
 		"test": "jest --config ./.jestrc.json",
 		"test:watch": "jest --config ./.jestrc.json --watch",
 		"test:cov": "jest --config ./.jestrc.json --coverage",
-		"test:e2e": "jest --config ./.e2e-jestrc.json --forceExit --detectOpenHandles",
-		"test:e2e:watch": "jest --config ./.e2e-jestrc.json --forceExit --detectOpenHandles --watch",
 		"report-coverage": "cat coverage/lcov.info | coveralls",
 		"semantic-release": "cp ./package.json ./dist/package.json && cp ./README.md ./dist/README.md && cd ./dist && semantic-release"
 	},

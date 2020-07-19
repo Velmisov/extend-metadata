@@ -35,7 +35,6 @@ jobs:
         - npm prune
       script:
         - npm run test:cov
-        - npm run test:e2e
       after_success:
         - npm run report-coverage
     - stage: release
