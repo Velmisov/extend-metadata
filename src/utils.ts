@@ -1,53 +1,49 @@
-export function extendRecursively(
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export function ReflectIsObject(value: any): boolean {
+	return typeof value === 'object' || typeof value === 'function';
+}
+
+export function extendObjectRecursively(
 	instance: Object,
-	metadataKeys: any[], // eslint-disable-line
+	metadataKeys: any[], // eslint-disable-line @typescript-eslint/no-explicit-any
 	propertyKey: string | symbol,
 	instanceProto: Object,
 ): void {
-	if (propertyKey === 'constructor')
-		extendConstructorRec(instance, metadataKeys, instanceProto);
-	else extendPropertyRec(instance, metadataKeys, propertyKey, instanceProto);
-}
-
-function extendConstructorRec(
-	instance: Object,
-	metadataKeys: any[], // eslint-disable-line
-	instanceProto: Object,
-) {
-	if (!instanceProto || !instanceProto.constructor) return;
+	if (!instanceProto || !instanceProto.hasOwnProperty(propertyKey)) return;
 
 	const protoMetadataKeys = Reflect.getOwnMetadataKeys(
-		instanceProto.constructor,
+		instanceProto[propertyKey],
 	);
 	for (const metadataKey of protoMetadataKeys) {
 		if (metadataKeys.includes(metadataKey)) continue;
 
 		const metadataValue = Reflect.getOwnMetadata(
 			metadataKey,
-			instanceProto.constructor,
+			instanceProto[propertyKey],
 		);
 
 		Reflect.defineMetadata(
 			metadataKey,
 			metadataValue,
-			instance.constructor,
+			instance[propertyKey],
 		);
 		metadataKeys.push(metadataKey);
 	}
 
-	extendConstructorRec(
+	extendObjectRecursively(
 		instance,
 		metadataKeys,
+		propertyKey,
 		Object.getPrototypeOf(instanceProto),
 	);
 }
 
-function extendPropertyRec(
+export function extendPropertyRecursively(
 	instance: Object,
 	metadataKeys: any[], // eslint-disable-line
 	propertyKey: string | symbol,
 	instanceProto: Object,
-) {
+): void {
 	if (!instanceProto || !instanceProto.hasOwnProperty(propertyKey)) return;
 
 	const protoMetadataKeys = Reflect.getOwnMetadataKeys(
@@ -72,7 +68,7 @@ function extendPropertyRec(
 		metadataKeys.push(metadataKey);
 	}
 
-	extendPropertyRec(
+	extendPropertyRecursively(
 		instance,
 		metadataKeys,
 		propertyKey,

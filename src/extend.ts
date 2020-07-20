@@ -1,4 +1,8 @@
-import { extendRecursively } from './utils';
+import {
+	extendObjectRecursively,
+	extendPropertyRecursively,
+	ReflectIsObject,
+} from './utils';
 
 export function Extend(): ClassDecorator {
 	return (constructor: Function): void => {
@@ -6,14 +10,25 @@ export function Extend(): ClassDecorator {
 		const instanceProto: Object = Object.getPrototypeOf(instance);
 
 		for (const propertyKey of Object.getOwnPropertyNames(instance)) {
-			const metadataKeys =
-				propertyKey === 'constructor'
-					? Reflect.getOwnMetadataKeys(instance.constructor)
-					: Reflect.getOwnMetadataKeys(instance, propertyKey);
+			if (ReflectIsObject(instance[propertyKey])) {
+				const objectMetadataKeys = Reflect.getOwnMetadataKeys(
+					instance[propertyKey],
+				);
+				extendObjectRecursively(
+					instance,
+					objectMetadataKeys,
+					propertyKey,
+					instanceProto,
+				);
+			}
 
-			extendRecursively(
+			const propertyMetadataKeys = Reflect.getOwnMetadataKeys(
 				instance,
-				metadataKeys,
+				propertyKey,
+			);
+			extendPropertyRecursively(
+				instance,
+				propertyMetadataKeys,
 				propertyKey,
 				instanceProto,
 			);
